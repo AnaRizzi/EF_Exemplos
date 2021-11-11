@@ -5,12 +5,12 @@ using System;
 
 namespace Alura.Filmes.App.Dados
 {
-    public class FilmeAtorConfig : IEntityTypeConfiguration<FilmeAtor>
+    public class FilmeCategoriaConfig : IEntityTypeConfiguration<FilmeCategoria>
     {
-        public void Configure(EntityTypeBuilder<FilmeAtor> builder)
+        public void Configure(EntityTypeBuilder<FilmeCategoria> builder)
         {
             builder
-                .ToTable("film_actor");
+                .ToTable("film_category");
 
             //as PK são shadow properties, então define elas primeiro, antes de dizer que são PK
             builder
@@ -18,7 +18,7 @@ namespace Alura.Filmes.App.Dados
                 .IsRequired();
 
             builder
-                .Property<int>("actor_id")
+                .Property<byte>("category_id")
                 .IsRequired();
 
             builder
@@ -28,18 +28,17 @@ namespace Alura.Filmes.App.Dados
                 .HasDefaultValueSql("getdate()");
 
             builder
-                .HasKey("film_id", "actor_id");
+                .HasKey("film_id", "category_id");
 
             builder
-                .HasOne(fa => fa.Filme)
-                .WithMany(f => f.Atores)
+                .HasOne(fc => fc.Filme)
+                .WithMany(f => f.Categorias)
                 .HasForeignKey("film_id");
 
             builder
-                .HasOne(fa => fa.Ator)
-                .WithMany(a => a.Filmografia)
-                .HasForeignKey("actor_id");
-
+                .HasOne(fc => fc.Categoria)
+                .WithMany(c => c.Filmes)
+                .HasForeignKey("category_id");
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Alura.Filmes.App
             {
                 contexto.LogSQLToConsole();
 
-                BuscarAtoresDeUmFilme(contexto);
+                BuscarFilmesDeUmaCategoria(contexto);
 
             }
 
@@ -106,6 +106,32 @@ namespace Alura.Filmes.App
             foreach (var ator in filme.Atores)
             {
                 Console.WriteLine(ator.Ator);
+            }
+        }
+
+        public static void BuscarCategorias(AluraFilmesContexto contexto)
+        {
+            //buscar atores
+            foreach (var item in contexto.Categorias)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        public static void BuscarFilmesDeUmaCategoria(AluraFilmesContexto contexto)
+        {
+            var categoria = contexto.Categorias
+                .Include(c => c.Filmes)
+                .ThenInclude(fc => fc.Filme)
+                .FirstOrDefault();
+
+            Console.WriteLine(categoria);
+            Console.WriteLine("Filmes dessa categoria:");
+
+            //buscar filmes
+            foreach (var filme in categoria.Filmes)
+            {
+                Console.WriteLine(filme.Filme);
             }
         }
     }
