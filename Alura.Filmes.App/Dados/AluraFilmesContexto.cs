@@ -9,6 +9,7 @@ namespace Alura.Filmes.App.Dados
         public DbSet<Filme> Filmes { get; set; }
         public DbSet<FilmeAtor> Elenco { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Idioma> Idiomas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -31,6 +32,9 @@ namespace Alura.Filmes.App.Dados
 
             /* FILMES E CATEGORIAS */
             modelBuilder.ApplyConfiguration(new FilmeCategoriaConfig());
+
+            /* IDIOMAS */
+            modelBuilder.ApplyConfiguration(new IdiomaConfig());
         }
     }
 }

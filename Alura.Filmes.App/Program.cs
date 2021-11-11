@@ -16,7 +16,7 @@ namespace Alura.Filmes.App
             {
                 contexto.LogSQLToConsole();
 
-                BuscarFilmesDeUmaCategoria(contexto);
+                BuscarFilmesSeparadosPorIdiomaFalado(contexto);
 
             }
 
@@ -133,6 +133,65 @@ namespace Alura.Filmes.App
             {
                 Console.WriteLine(filme.Filme);
             }
+        }
+
+        public static void BuscarIdiomas(AluraFilmesContexto contexto)
+        {
+            foreach (var idioma in contexto.Idiomas)
+            {
+                Console.WriteLine(idioma);
+            }
+        }
+
+        public static void BuscarFilmesPorIdiomaOriginal(AluraFilmesContexto contexto)
+        {
+            var idioma = contexto.Idiomas
+                .Include(i => i.FilmesFalados)
+                .FirstOrDefault();
+
+            Console.WriteLine(idioma);
+            Console.WriteLine("Filmes desse idioma falado:");
+
+            //buscar filmes
+            foreach (var filme in idioma.FilmesFalados)
+            {
+                Console.WriteLine(filme);
+            }
+        }
+
+        public static void BuscarFilmesOriginaisJaponeses(AluraFilmesContexto contexto)
+        {
+            var idioma = contexto.Idiomas
+                .Include(i => i.FilmesOriginais)
+                .Where(i => i.Id == 3)
+                .FirstOrDefault();
+
+            Console.WriteLine(idioma);
+            Console.WriteLine("Filmes desse idioma falado:");
+
+            //buscar filmes
+            foreach (var filme in idioma.FilmesOriginais)
+            {
+                Console.WriteLine(filme);
+            }
+        }
+
+        public static void BuscarFilmesSeparadosPorIdiomaFalado(AluraFilmesContexto contexto)
+        {
+            var idiomas = contexto.Idiomas
+                .Include(i => i.FilmesFalados);
+
+            foreach(var idioma in idiomas)
+            {
+                Console.WriteLine(idioma);
+                foreach (var filme in idioma.FilmesFalados)
+                {
+                    Console.WriteLine(filme);
+                }
+                Console.WriteLine("\n");
+
+            }
+
         }
     }
 }

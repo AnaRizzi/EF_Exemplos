@@ -130,6 +130,8 @@
     <Compile Include="Dados\FilmeAtorConfig.cs" />
     <Compile Include="Dados\FilmeCategoriaConfig.cs" />
     <Compile Include="Dados\FilmeConfig.cs" />
+    <Compile Include="Dados\IdiomaConfig.cs" />
+    <Compile Include="Negocio\Idioma.cs" />
     <Compile Include="Extensions\DbContextExtensions.cs" />
     <Compile Include="Migrations\20211110194718_Inicial.cs" />
     <Compile Include="Migrations\20211110194718_Inicial.designer.cs">
