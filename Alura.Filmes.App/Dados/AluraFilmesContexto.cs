@@ -11,14 +11,15 @@ namespace Alura.Filmes.App.Dados
     public class AluraFilmesContexto : DbContext
     {
         public DbSet<Ator> Atores { get; set; }
+        public DbSet<Filme> Filmes { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=AluraFilmes;Trusted_connection=true;");
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            /* ATORES */
             modelBuilder.Entity<Ator>()
                 .ToTable("actor");
 
@@ -45,6 +46,41 @@ namespace Alura.Filmes.App.Dados
                 .IsRequired()
                 .HasDefaultValueSql("getdate()");
 
+            /* FILMES */
+            modelBuilder.Entity<Filme>()
+                .ToTable("film");
+
+            modelBuilder.Entity<Filme>()
+                .Property(f => f.Id)
+                .HasColumnName("film_id");
+
+            modelBuilder.Entity<Filme>()
+                .Property(f => f.Titulo)
+                .HasColumnName("title")
+                .HasColumnType("varchar(255)")
+                .IsRequired();
+
+            modelBuilder.Entity<Filme>()
+                .Property(f => f.Descricao)
+                .HasColumnName("description")
+                .HasColumnType("text");
+
+            modelBuilder.Entity<Filme>()
+                .Property(f => f.AnoLancamento)
+                .HasColumnName("release_year")
+                .HasColumnType("varchar(4)");
+
+            modelBuilder.Entity<Filme>()
+                .Property(f => f.Duracao)
+                .HasColumnName("length")
+                .HasColumnType("smallint");
+
+            //Shadow Property - tem na tabela, mas não tem na regra de negócio
+            modelBuilder.Entity<Filme>()
+                .Property<DateTime>("last_update")
+                .HasColumnType("datetime")
+                .IsRequired()
+                .HasDefaultValueSql("getdate()");
         }
     }
 }
