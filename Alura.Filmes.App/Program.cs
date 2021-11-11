@@ -16,7 +16,7 @@ namespace Alura.Filmes.App
             {
                 contexto.LogSQLToConsole();
 
-                BuscarAtores(contexto);
+                BuscarAtoresDeUmFilme(contexto);
 
             }
 
@@ -82,7 +82,31 @@ namespace Alura.Filmes.App
             }
         }
 
+        public static void BuscarIdFilmesAtores(AluraFilmesContexto contexto)
+        {
+            //buscar atores
+            foreach (var item in contexto.Elenco)
+            {
+                Console.WriteLine($"Id do ator: { contexto.Entry(item).Property("actor_id").CurrentValue}, Id do filme: { contexto.Entry(item).Property("film_id").CurrentValue}");
+                Console.WriteLine(item);
+            }
+        }
 
+        public static void BuscarAtoresDeUmFilme(AluraFilmesContexto contexto)
+        {
+            var filme = contexto.Filmes
+                .Include(f => f.Atores)
+                .ThenInclude(fa => fa.Ator)
+                .FirstOrDefault();
 
+            Console.WriteLine(filme);
+            Console.WriteLine("Elenco do filme:");
+
+            //buscar atores
+            foreach (var ator in filme.Atores)
+            {
+                Console.WriteLine(ator.Ator);
+            }
+        }
     }
 }
