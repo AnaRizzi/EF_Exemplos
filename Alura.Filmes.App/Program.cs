@@ -16,8 +16,7 @@ namespace Alura.Filmes.App
             {
                 contexto.LogSQLToConsole();
 
-                
-
+                BuscarAtores(contexto);
 
             }
 
@@ -25,7 +24,7 @@ namespace Alura.Filmes.App
         }
 
 
-        public void BuscarAtores(AluraFilmesContexto contexto)
+        public static void BuscarAtores(AluraFilmesContexto contexto)
         {
             //buscar atores
             foreach (var ator in contexto.Atores)
@@ -34,7 +33,7 @@ namespace Alura.Filmes.App
             }
         }
 
-        public void InserirAtores(AluraFilmesContexto contexto)
+        public static void InserirAtores(AluraFilmesContexto contexto)
         {
             //Inserir ator
             var ator = new Ator();
@@ -53,7 +52,7 @@ namespace Alura.Filmes.App
             }
         }
 
-        public void ExibirShadowPropertiesDeAtor(AluraFilmesContexto contexto)
+        public static void ExibirShadowPropertiesDeAtor(AluraFilmesContexto contexto)
         {
             //exibir ator com shadow properties
             var ator = contexto.Atores.First();
@@ -61,7 +60,7 @@ namespace Alura.Filmes.App
             Console.WriteLine(contexto.Entry(ator).Property("last_update").CurrentValue);
         }
 
-        public void BuscarAtoresComUpdateRecente(AluraFilmesContexto contexto)
+        public static void BuscarAtoresComUpdateRecente(AluraFilmesContexto contexto)
         {
             //recuperar os 10 atores com atualização mais recente
             var atores = contexto.Atores
@@ -74,7 +73,7 @@ namespace Alura.Filmes.App
         }
 
 
-        public void BuscarFilmes(AluraFilmesContexto contexto)
+        public static void BuscarFilmes(AluraFilmesContexto contexto)
         {
             //buscar atores
             foreach (var filme in contexto.Filmes)
