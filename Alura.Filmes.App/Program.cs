@@ -16,9 +16,7 @@ namespace Alura.Filmes.App
             {
                 contexto.LogSQLToConsole();
 
-                BuscarClientes(contexto);
-                BuscarFuncionarios(contexto);
-
+                BuscarAtoresMaisAtuantes(contexto);
             }
 
             Console.ReadKey();
@@ -214,7 +212,6 @@ namespace Alura.Filmes.App
 
         public static void BuscarClientes(AluraFilmesContexto contexto)
         {
-            //buscar atores
             foreach (var cliente in contexto.Clientes)
             {
                 Console.WriteLine(cliente);
@@ -223,10 +220,46 @@ namespace Alura.Filmes.App
 
         public static void BuscarFuncionarios(AluraFilmesContexto contexto)
         {
-            //buscar atores
             foreach (var funcionario in contexto.Funcionarios)
             {
                 Console.WriteLine(funcionario);
+            }
+        }
+
+        public static void BuscarAtoresMaisAtuantes(AluraFilmesContexto contexto)
+        {
+            var atoresMaisAtuantes = contexto.Atores
+                .Include(a => a.Filmografia)
+                .OrderByDescending(a => a.Filmografia.Count)
+                .Take(5);
+
+            foreach (var ator in atoresMaisAtuantes)
+            {
+                Console.WriteLine($"O Ator {ator.PrimeiroNome} {ator.UltimoNome} atuou em {ator.Filmografia.Count} filmes");
+            }
+
+            var sqlSimplesQueNaoFuncionaNoEF = @"select top 5 a.actor_id, a.first_name, a.last_name, count(*) as total
+                        from actor a
+                        inner join film_actor fa on fa.actor_id = a.actor_id
+                        group by a.first_name, a.last_name
+                        order by total desc";
+
+            var sql = @"select a.*
+                        from actor a
+                        inner join
+                        (select top 5 a.actor_id, count(*) as total
+                        from actor a
+                        inner join film_actor fa on fa.actor_id = a.actor_id
+                        group by a.actor_id
+                        order by total desc) filmes on filmes.actor_id = a.actor_id";
+
+            var atoresMaisAtuantesSQL = contexto.Atores
+                .FromSql(sql)
+                .Include(a => a.Filmografia);
+
+            foreach (var ator in atoresMaisAtuantesSQL)
+            {
+                Console.WriteLine($"O Ator {ator.PrimeiroNome} {ator.UltimoNome} atuou em {ator.Filmografia.Count} filmes");
             }
         }
     }
