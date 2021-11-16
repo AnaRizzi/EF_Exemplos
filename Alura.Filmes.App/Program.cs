@@ -16,7 +16,8 @@ namespace Alura.Filmes.App
             {
                 contexto.LogSQLToConsole();
 
-                InserirFilme(contexto);
+                BuscarClientes(contexto);
+                BuscarFuncionarios(contexto);
 
             }
 
@@ -209,6 +210,24 @@ namespace Alura.Filmes.App
             var filmeInserido = contexto.Filmes.FirstOrDefault(f => f.Titulo == "Harry Potter 3");
             Console.WriteLine(filmeInserido);
             Console.WriteLine(filmeInserido.Classificacao);
+        }
+
+        public static void BuscarClientes(AluraFilmesContexto contexto)
+        {
+            //buscar atores
+            foreach (var cliente in contexto.Clientes)
+            {
+                Console.WriteLine(cliente);
+            }
+        }
+
+        public static void BuscarFuncionarios(AluraFilmesContexto contexto)
+        {
+            //buscar atores
+            foreach (var funcionario in contexto.Funcionarios)
+            {
+                Console.WriteLine(funcionario);
+            }
         }
     }
 }

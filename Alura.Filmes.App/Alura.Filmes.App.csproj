@@ -127,9 +127,11 @@
     <Compile Include="Dados\AluraFilmesContexto.cs" />
     <Compile Include="Dados\AtorConfig.cs" />
     <Compile Include="Dados\CategoriaConfig.cs" />
+    <Compile Include="Dados\ClienteConfig.cs" />
     <Compile Include="Dados\FilmeAtorConfig.cs" />
     <Compile Include="Dados\FilmeCategoriaConfig.cs" />
     <Compile Include="Dados\FilmeConfig.cs" />
+    <Compile Include="Dados\FuncionarioConfig.cs" />
     <Compile Include="Dados\IdiomaConfig.cs" />
     <Compile Include="Extensions\ClassificacaoIndicativaExtensions.cs" />
     <Compile Include="Migrations\20211112135940_Curso01.cs" />
@@ -157,6 +159,8 @@
       <DependentUpon>20211112185301_EnumClassificacao.cs</DependentUpon>
     </Compile>
     <Compile Include="Negocio\ClassificacaoIndicativa.cs" />
+    <Compile Include="Negocio\Cliente.cs" />
+    <Compile Include="Negocio\Funcionario.cs" />
     <Compile Include="Negocio\Idioma.cs" />
     <Compile Include="Extensions\DbContextExtensions.cs" />
     <Compile Include="Migrations\20211110194718_Inicial.cs" />
@@ -169,6 +173,8 @@
     <Compile Include="Negocio\Filme.cs" />
     <Compile Include="Negocio\FilmeAtor.cs" />
     <Compile Include="Negocio\FilmeCategoria.cs" />
+    <Compile Include="Negocio\Pessoa.cs" />
+    <Compile Include="Negocio\PessoaConfig.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
