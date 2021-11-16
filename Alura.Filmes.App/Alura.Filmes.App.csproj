@@ -131,6 +131,32 @@
     <Compile Include="Dados\FilmeCategoriaConfig.cs" />
     <Compile Include="Dados\FilmeConfig.cs" />
     <Compile Include="Dados\IdiomaConfig.cs" />
+    <Compile Include="Extensions\ClassificacaoIndicativaExtensions.cs" />
+    <Compile Include="Migrations\20211112135940_Curso01.cs" />
+    <Compile Include="Migrations\20211112135940_Curso01.designer.cs">
+      <DependentUpon>20211112135940_Curso01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20211112140948_IndiceAtorLastName.cs" />
+    <Compile Include="Migrations\20211112140948_IndiceAtorLastName.designer.cs">
+      <DependentUpon>20211112140948_IndiceAtorLastName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20211112142805_UniqueNomeAtor.cs" />
+    <Compile Include="Migrations\20211112142805_UniqueNomeAtor.designer.cs">
+      <DependentUpon>20211112142805_UniqueNomeAtor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20211112151432_ColunaRatingFilme.cs" />
+    <Compile Include="Migrations\20211112151432_ColunaRatingFilme.designer.cs">
+      <DependentUpon>20211112151432_ColunaRatingFilme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20211112172822_CheckConstraint.cs" />
+    <Compile Include="Migrations\20211112172822_CheckConstraint.designer.cs">
+      <DependentUpon>20211112172822_CheckConstraint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20211112185301_EnumClassificacao.cs" />
+    <Compile Include="Migrations\20211112185301_EnumClassificacao.designer.cs">
+      <DependentUpon>20211112185301_EnumClassificacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\ClassificacaoIndicativa.cs" />
     <Compile Include="Negocio\Idioma.cs" />
     <Compile Include="Extensions\DbContextExtensions.cs" />
     <Compile Include="Migrations\20211110194718_Inicial.cs" />

@@ -16,7 +16,7 @@ namespace Alura.Filmes.App
             {
                 contexto.LogSQLToConsole();
 
-                BuscarFilmesSeparadosPorIdiomaFalado(contexto);
+                InserirFilme(contexto);
 
             }
 
@@ -192,6 +192,23 @@ namespace Alura.Filmes.App
 
             }
 
+        }
+
+        public static void InserirFilme(AluraFilmesContexto contexto)
+        {
+            var filme = new Filme();
+            filme.Titulo = "Harry Potter 3";
+            filme.AnoLancamento = "2000";
+            filme.Duracao = 200;
+            filme.IdiomaFalado = contexto.Idiomas.First();
+            filme.Classificacao = ClassificacaoIndicativa.MaioresQue10;
+
+            contexto.Filmes.Add(filme);
+            contexto.SaveChanges();
+
+            var filmeInserido = contexto.Filmes.FirstOrDefault(f => f.Titulo == "Harry Potter 3");
+            Console.WriteLine(filmeInserido);
+            Console.WriteLine(filmeInserido.Classificacao);
         }
     }
 }

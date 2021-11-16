@@ -11,9 +11,10 @@ using System;
 namespace Alura.Filmes.App.Migrations
 {
     [DbContext(typeof(AluraFilmesContexto))]
-    partial class AluraFilmesContextoModelSnapshot : ModelSnapshot
+    [Migration("20211112135940_Curso01")]
+    partial class Curso01
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,11 +43,6 @@ namespace Alura.Filmes.App.Migrations
                         .HasDefaultValueSql("getdate()");
 
                     b.HasKey("Id");
-
-                    b.HasAlternateKey("PrimeiroNome", "UltimoNome");
-
-                    b.HasIndex("UltimoNome")
-                        .HasName("idx_actor_last_name");
 
                     b.ToTable("actor");
                 });
@@ -88,10 +84,6 @@ namespace Alura.Filmes.App.Migrations
                     b.Property<short>("Duracao")
                         .HasColumnName("length")
                         .HasColumnType("smallint");
-
-                    b.Property<string>("TextoClassificacao")
-                        .HasColumnName("rating")
-                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Titulo")
                         .IsRequired()

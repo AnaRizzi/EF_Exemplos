@@ -11,9 +11,10 @@ using System;
 namespace Alura.Filmes.App.Migrations
 {
     [DbContext(typeof(AluraFilmesContexto))]
-    partial class AluraFilmesContextoModelSnapshot : ModelSnapshot
+    [Migration("20211112172822_CheckConstraint")]
+    partial class CheckConstraint
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,6 +82,10 @@ namespace Alura.Filmes.App.Migrations
                         .HasColumnName("release_year")
                         .HasColumnType("varchar(4)");
 
+                    b.Property<string>("Classificacao")
+                        .HasColumnName("rating")
+                        .HasColumnType("varchar(10)");
+
                     b.Property<string>("Descricao")
                         .HasColumnName("description")
                         .HasColumnType("text");
@@ -88,10 +93,6 @@ namespace Alura.Filmes.App.Migrations
                     b.Property<short>("Duracao")
                         .HasColumnName("length")
                         .HasColumnType("smallint");
-
-                    b.Property<string>("TextoClassificacao")
-                        .HasColumnName("rating")
-                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Titulo")
                         .IsRequired()

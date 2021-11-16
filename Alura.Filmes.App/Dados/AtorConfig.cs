@@ -34,6 +34,16 @@ namespace Alura.Filmes.App.Dados
                 .HasColumnType("datetime")
                 .IsRequired()
                 .HasDefaultValueSql("getdate()");
+
+            //inserindo índice para uma propriedade que não é FK
+            //se não passar o nome, ele irá criar com o nome IX_tabela_campo
+            builder
+                .HasIndex(a => a.UltimoNome)
+                .HasName("idx_actor_last_name");
+
+            //criando chave alternativa para incluir o Unique com dois campos
+            builder
+                .HasAlternateKey(a => new { a.PrimeiroNome, a.UltimoNome });
         }
     }
 }

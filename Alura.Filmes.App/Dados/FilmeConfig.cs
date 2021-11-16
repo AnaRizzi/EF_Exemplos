@@ -38,6 +38,15 @@ namespace Alura.Filmes.App.Dados
                 .HasColumnName("length")
                 .HasColumnType("smallint");
 
+            builder
+                .Property(f => f.TextoClassificacao)
+                .HasColumnName("rating")
+                .HasColumnType("varchar(10)");
+
+            //para o entity ignorar essa propriedade
+            builder
+                .Ignore(f => f.Classificacao);
+
             //Shadow Property - tem na tabela, mas não tem na regra de negócio
             builder
                 .Property<DateTime>("last_update")
